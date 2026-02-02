@@ -1,0 +1,5 @@
+john,CS201
+alice,ENG101Sarika,CS201
+Sarika,CS202
+Sarika,CS201
+Sarika,CS301

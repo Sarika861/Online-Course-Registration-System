@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register - Online Course System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container login-box">
+        <h1>Register</h1>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="/register" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <div style="margin: 10px 0;">
+                <label style="display: block; margin-bottom: 5px; color: #333;">Select Role:</label>
+                <select name="role" required style="padding: 8px; margin: 5px; border-radius: 6px; border: 1px solid #ccc; width: 220px;">
+                    <option value="">-- Choose Role --</option>
+                    <option value="Student">Student</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;">
+            Already have an account? <a href="/" style="color: #4CAF50; text-decoration: none;">Login here</a>
+        </p>
+    </div>
+</body>
+
+</html>

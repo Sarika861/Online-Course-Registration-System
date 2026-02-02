@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Courses - Course Registration System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-section">
+            <h1>📚 My Enrolled Courses</h1>
+            <div class="user-info">
+                <span>Welcome, <strong>{{ username }}</strong></span>
+                <a href="/courses" class="dashboard-btn">All Courses</a>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Student Statistics -->
+        <div class="stats-container">
+            <div class="stat-card highlight">
+                <div class="stat-number">{{ stats.total_enrolled }}</div>
+                <div class="stat-label">Courses Enrolled</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_available }}</div>
+                <div class="stat-label">Total Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.can_enroll }}</div>
+                <div class="stat-label">Available to Enroll</div>
+            </div>
+        </div>
+
+        <div class="courses-section">
+            <h2>📖 Your Enrolled Courses</h2>
+            
+            {% if courses %}
+            <div class="my-courses-grid">
+                {% for course in courses %}
+                <div class="course-card">
+                    <div class="course-card-header">
+                        <h3>{{ course.name }}</h3>
+                        <span class="course-badge">{{ course.course_id }}</span>
+                    </div>
+                    <div class="course-card-body">
+                        <p><strong>👨‍🏫 Instructor:</strong> {{ course.instructor }}</p>
+                        <p><strong>� Fee:</strong> <span class="fee-badge">{{ course.fee }}</span></p>
+                        <p><strong>📝 Added by:</strong> {{ course.added_by }}</p>                        <p><strong>💺 Class Size:</strong> 
+                            {% set enrolled = enrollments.get(course.course_id, [])|length %}
+                            {{ enrolled }}/{{ course.capacity }} students
+                        </p>                        <p><strong>👥 Classmates:</strong> 
+                            {% if enrollments.get(course.course_id) %}
+                                {{ enrollments[course.course_id]|length - 1 }} other student(s)
+                            {% else %}
+                                None
+                            {% endif %}
+                        </p>
+                        {% if course.notes and course.notes != "No additional notes" %}
+                        <p><strong>📋 Notes:</strong> <em>{{ course.notes }}</em></p>
+                        {% endif %}
+                    </div>
+                    <div class="course-card-footer">
+                        <form action="/unenroll" method="post" class="inline-form">
+                            <input type="hidden" name="course_id" value="{{ course.course_id }}">
+                            <button type="submit" class="unenroll-btn" onclick="return confirm('Are you sure you want to drop {{ course.name }}?')">
+                                Drop Course
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>📭 You are not enrolled in any courses yet.</p>
+                <a href="/courses" class="btn-primary">Browse All Courses</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="info-box">
+            <strong>ℹ️ Quick Actions:</strong> 
+            <a href="/courses">Browse all available courses</a> to enroll in more classes. 
+            You can drop courses anytime using the "Drop Course" button.
+        </div>
+    </div>
+</body>
+
+</html>

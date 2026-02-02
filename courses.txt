@@ -1,0 +1,9 @@
+CS201,Database Management Systems,Dr. Michael Brown,Admin,₹12999,Learn SQL and database design fundamentals,50
+CS202,Web Development,Prof. Emily Davis,Admin,₹10499,Build responsive websites with HTML CSS and JavaScript,45
+CS301,Machine Learning,Dr. David Wilson,Admin,₹18999,Introduction to ML algorithms and Python libraries,40
+MATH101,Calculus I,Prof. Robert Taylor,Admin,₹7999,Differential and integral calculus basics,60
+MATH201,Linear Algebra,Dr. Jennifer Martinez,Admin,₹8999,Matrices vectors and transformations,55
+ENG101,English Composition,Prof. Lisa Anderson,Admin,₹5499,Academic writing and critical thinking skills,70
+PHY101,Physics Fundamentals,Dr. James Thomas,Admin,₹9499,Classical mechanics and thermodynamics,50
+BUS101,Business Management,Prof. Maria Garcia,Admin,₹14999,Business strategy and organizational principles,45
+CS701,Electrical,Mr. Harsh,Harsh,9999,Basics of Electrical Circuits and Power Electronics,35

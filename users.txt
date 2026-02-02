@@ -1,0 +1,7 @@
+Sarika,Sara1234,Student
+admin,admin123,Admin
+john,john123,Student
+alice,alice123,Student
+Mridul,Mri123,Student
+Mr. Alok Kumar,Alok123,Admin
+Harsh,har123,Admin
